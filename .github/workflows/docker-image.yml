@@ -21,7 +21,7 @@ jobs:
       run: |
         docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ceph-unofficial/ceph-extra:$(date +%s)
+      run: docker build . --file Dockerfile --tag ceph-unofficial/ceph:$(date +%s)
 
     - name: Docker Push
       run: docker push ceph-unofficial/ceph
