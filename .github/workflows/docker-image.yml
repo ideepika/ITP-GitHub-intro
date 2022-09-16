@@ -21,6 +21,6 @@ jobs:
       run: |
         docker login -u $DOCKER_USER  -p $DOCKER_PASSWORD
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag temp-repo/unofficial_ceph_enhanced:v17
+      run: docker build . --file Dockerfile --tag dexter816/temp-repo:v17
     - name: Docker Push
-      run: docker push temp-repo/unofficial_ceph_enhanced
+      run: docker push dexter816/temp-repo:v17
