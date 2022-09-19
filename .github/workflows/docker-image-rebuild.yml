@@ -25,7 +25,8 @@ jobs:
     - name: Build the Docker image
       run: |
         latest_ceph_image_tag=$(curl -s -L https://quay.io/api/v1/repository/ceph/ceph/tag\?page_size\=100 | jq '."tags"[] .name' | sort -rn | head -n 1)
-        sed -i 's/ENV CEPH_IMAGE=.*/ENV CEPH_IMAGE=\"$latest_ceph_image_tag\"/g' Dockerfile
+        echo "$latest_ceph_image_tag"
+        sed -i "s/FROM quay\.io\/ceph\/ceph.*/FROM quay\.io\/ceph\/ceph\:$latest_ceph_image_tag/g" Dockerfile
         # docker build . --file Dockerfile --tag koor/ceph-extra-unofficial:$latest_ceph_image_tag
         docker build . --file Dockerfile --tag dexter816/temp-repo:v17
     - name: Docker Push
